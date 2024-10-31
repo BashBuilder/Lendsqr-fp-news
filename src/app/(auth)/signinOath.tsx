@@ -6,14 +6,28 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import logo from "src/assets/images/Splash_Screen_2-removebg-preview.png";
 import apple from "src/assets/images/apple.png";
 import google from "src/assets/images/Logo-google-icon-PNG-removebg-preview.png";
-import { signInWithGoogle } from "@/services/authActions";
+import { signInWithApple, signInWithGoogle } from "@/services/authActions";
 
 export default function Page() {
   const { top } = useSafeAreaInsets();
   const dispatch = useDispatch();
 
-  const handleGoogleSignIn = () => {
-    dispatch(signInWithGoogle());
+  const handleGoogleSignIn = async () => {
+    try {
+      await signInWithGoogle(dispatch);
+      console.log("sucess");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleAppleSignIn = async () => {
+    try {
+      await signInWithApple(dispatch);
+      console.log("sucess");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleRedirectToPasswordSignUp = () => {
@@ -36,7 +50,7 @@ export default function Page() {
 
       <View className="flex w-screen gap-5 items-center justify-center">
         <TouchableOpacity
-          onPress={signInWithGoogle}
+          onPress={handleGoogleSignIn}
           className=" border border-green-950 px-4 py-4 rounded-full justify-center w-10/12 flex flex-row gap-2 items-center"
         >
           <Image
@@ -49,7 +63,7 @@ export default function Page() {
         </TouchableOpacity>
 
         <TouchableOpacity
-          onPress={handleRedirectToPasswordSignUp}
+          onPress={handleAppleSignIn}
           className=" border border-green-950 px-4 py-4 rounded-full justify-center w-10/12 flex flex-row gap-2 items-center"
         >
           <Image

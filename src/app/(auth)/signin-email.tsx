@@ -12,8 +12,13 @@ export default function Page() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSignIn = () => {
-    dispatch(signInWithEmail(email, password));
+  const handleSignIn = async () => {
+    try {
+      await signInWithEmail(email, password, dispatch);
+      console.log("sucess");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

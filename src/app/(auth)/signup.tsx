@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Image, Text, View, TouchableOpacity, TextInput } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import logo from "src/assets/images/Splash_Screen_2-removebg-preview.png";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { signUpWithEmail } from "@/services/authActions";
 
 export default function Page() {
@@ -12,8 +12,13 @@ export default function Page() {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
-  const handleSignUp = () => {
-    dispatch(signUpWithEmail(email, password));
+  const handleSignUp = async () => {
+    try {
+      await signUpWithEmail(email, password, dispatch);
+      console.log("sucess");
+    } catch (error) {
+      console.log("error");
+    }
   };
 
   return (
