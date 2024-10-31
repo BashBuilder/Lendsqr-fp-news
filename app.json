@@ -1,8 +1,13 @@
 {
   "expo": {
     "scheme": "acme",
-    "userInterfaceStyle": "automatic",
+    "version": "1.0.0",
     "orientation": "default",
+    "icon": "./src/assets/images/splash.png",
+    "splash": {
+      "image": "./src/assets/images/splash.png",
+      "backgroundColor": "#dcfce7"
+    },
     "web": {
       "output": "static",
       "bundler": "metro"
@@ -16,6 +21,15 @@
       ]
     ],
     "name": "lendsqrFeNews",
-    "slug": "lendsqrFeNews"
+    "slug": "lendsqrFeNews",
+    "typedRoutes": true,
+    "userInterfaceStyle": "automatic",
+    "experiments": {
+      "typedRoutes": true
+    },
+    "extra": {
+      "rapidApiKey": "@env.RAPIDAPI_KEY",
+      "rapidApiHost": "@env.RAPIDAPI_HOST"
+    }
   }
 }

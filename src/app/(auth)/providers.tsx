@@ -1,4 +1,4 @@
-import { Link } from "expo-router";
+import { Link, useRouter } from "expo-router";
 import React from "react";
 import { useDispatch } from "react-redux";
 import { Image, Text, View, TouchableOpacity } from "react-native";
@@ -8,9 +8,11 @@ import apple from "src/assets/images/apple.png";
 import google from "src/assets/images/Logo-google-icon-PNG-removebg-preview.png";
 import { signInWithApple, signInWithGoogle } from "@/services/authActions";
 
-export default function Page() {
+export default function AuthProviders() {
   const { top } = useSafeAreaInsets();
   const dispatch = useDispatch();
+
+  const router = useRouter();
 
   const handleGoogleSignIn = async () => {
     try {
@@ -31,8 +33,7 @@ export default function Page() {
   };
 
   const handleRedirectToPasswordSignUp = () => {
-    // Add your redirect to password page logic here
-    console.log("Redirect to Password Sign Up Clicked");
+    router.push("/(auth)signin-email");
   };
 
   return (
@@ -88,7 +89,7 @@ export default function Page() {
           </Text>
         </TouchableOpacity>
 
-        <Link href={""}>
+        <Link href={"/(auth)signup"}>
           <Text className="text-green-950 text-xl font-bold">
             Don't have an account? sign up
           </Text>

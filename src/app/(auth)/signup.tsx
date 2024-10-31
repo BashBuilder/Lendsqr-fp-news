@@ -6,7 +6,7 @@ import logo from "src/assets/images/Splash_Screen_2-removebg-preview.png";
 import { useDispatch } from "react-redux";
 import { signUpWithEmail } from "@/services/authActions";
 
-export default function Page() {
+export default function SignUp() {
   const { top } = useSafeAreaInsets();
   const dispatch = useDispatch();
   const [email, setEmail] = useState<string>("");
@@ -58,7 +58,7 @@ export default function Page() {
           <Text className="text-white text-2xl font-bold">Sign In</Text>
         </TouchableOpacity>
       </View>
-      <Link href={""}>
+      <Link href={"/(auth)providers"}>
         <Text className="text-green-950 text-xl font-bold">
           Already have an account? sign in
         </Text>

@@ -1,6 +1,12 @@
 import "../global.css";
-import { Slot } from "expo-router";
+import { Slot, Stack } from "expo-router";
+import { Provider } from "react-redux";
+import store from "src/hooks/store";
 
 export default function Layout() {
-  return <Slot />;
+  return (
+    <Provider store={store}>
+      <Stack />
+    </Provider>
+  );
 }

@@ -57,14 +57,14 @@ export const signInWithGoogle = async (dispatch: Dispatch) => {
   dispatch(setLoading(true));
   try {
     const result = await signInWithPopup(auth, googleProvider);
-    const credential = GoogleAuthProvider.credentialFromResult(result);
-    dispatch(setUser(result.user));
-    dispatch(setLoading(false));
+    // const credential = GoogleAuthProvider.credentialFromResult(result);
+    // dispatch(setUser(result.user));
+    // dispatch(setLoading(false));
     return { success: true };
   } catch (error) {
     dispatch(setError(error.message));
     dispatch(setLoading(false));
-    throw new Error("Something");
+    throw error.message;
   }
 };
 
@@ -79,6 +79,6 @@ export const signInWithApple = async (dispatch: Dispatch) => {
   } catch (error) {
     dispatch(setError(error.message));
     dispatch(setLoading(false));
-    throw new Error("Something");
+    throw error.message;
   }
 };

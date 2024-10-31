@@ -6,7 +6,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useDispatch } from "react-redux";
 import logo from "src/assets/images/Splash_Screen_2-removebg-preview.png";
 
-export default function Page() {
+export default function SignInEmail() {
   const { top } = useSafeAreaInsets();
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
@@ -58,7 +58,7 @@ export default function Page() {
           <Text className="text-white text-2xl font-bold">Sign In</Text>
         </TouchableOpacity>
       </View>
-      <Link href={""}>
+      <Link href={"/(auth)signup"}>
         <Text className="text-green-950 text-xl font-bold">
           Don't have an account? sign up
         </Text>
