@@ -1,18 +1,19 @@
+import { signInWithEmail } from "@/services/authActions";
 import { Link } from "expo-router";
 import React, { useState } from "react";
 import { Image, Text, View, TouchableOpacity, TextInput } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useDispatch } from "react-redux";
 import logo from "src/assets/images/Splash_Screen_2-removebg-preview.png";
 
 export default function Page() {
   const { top } = useSafeAreaInsets();
+  const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSignIn = () => {
-    // Add your sign-in logic here
-    console.log("Email:", email);
-    console.log("Password:", password);
+    dispatch(signInWithEmail(email, password));
   };
 
   return (
@@ -25,7 +26,7 @@ export default function Page() {
         style={{ width: 200, height: 200, resizeMode: "contain" }}
       />
       <Text className="text-2xl font-semibold text-center text-green-950/70">
-        Welcome! Sign up for latest news
+        Welcome! Let's dive into your account
       </Text>
 
       <View className="flex w-screen gap-5 items-center justify-center ">
@@ -54,7 +55,7 @@ export default function Page() {
       </View>
       <Link href={""}>
         <Text className="text-green-950 text-xl font-bold">
-          Already have an account? sign in
+          Don't have an account? sign up
         </Text>
       </Link>
     </View>

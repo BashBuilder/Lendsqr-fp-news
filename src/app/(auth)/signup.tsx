@@ -3,16 +3,17 @@ import React, { useState } from "react";
 import { Image, Text, View, TouchableOpacity, TextInput } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import logo from "src/assets/images/Splash_Screen_2-removebg-preview.png";
+import { useDispatch, useSelector } from "react-redux";
+import { signUpWithEmail } from "@/services/authActions";
 
 export default function Page() {
   const { top } = useSafeAreaInsets();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
 
-  const handleSignIn = () => {
-    // Add your sign-in logic here
-    console.log("Email:", email);
-    console.log("Password:", password);
+  const handleSignUp = () => {
+    dispatch(signUpWithEmail(email, password));
   };
 
   return (
@@ -46,7 +47,7 @@ export default function Page() {
           autoCapitalize="none"
         />
         <TouchableOpacity
-          onPress={handleSignIn}
+          onPress={handleSignUp}
           className="bg-green-800 px-4 py-6 rounded-full justify-center w-10/12 flex items-center"
         >
           <Text className="text-white text-2xl font-bold">Sign In</Text>
