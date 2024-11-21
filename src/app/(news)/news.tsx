@@ -1,49 +1,41 @@
-import {
-  View,
-  Text,
-  ScrollView,
-  Image,
-  TouchableOpacity,
-  FlatList,
-} from "react-native";
+import { View, Text, Image, TouchableOpacity, FlatList } from "react-native";
 import React, { useEffect, useState } from "react";
 import image from "src/assets/images/Image11.png";
 import { Link, Stack } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 import { fetchNews } from "@/util/request";
-import ToastManager, { Toast } from "toastify-react-native";
 
 const newsList = [
   {
-    title: "Experience the Serenity of Japan's Traditional Countryside",
+    title: "Experience the412 Serenity of Japan's Traditional Countryside",
     image,
     url: "/",
     details:
       "Experience the Serenity of Japan's Traditional Countryside Experience the Serenity of Japan's Traditional Countryside Japan's Traditional Countryside Experience the Serenity of Japan's Traditional Countryside Japan's Traditional Countryside Experience the Serenity of Japan's Traditional Countryside Japan's Traditional Countryside Experience the Serenity of Japan's Traditional Countryside Japan's Traditional Countryside Experience the Serenity of Japan's Traditional Countryside",
   },
   {
-    title: "Experience the Serenity of Japan's Traditional Countryside",
+    title: "Experience the 1232 Serenity of Japan's Traditional Countryside",
+    image,
+    url: "/",
+    details:
+      "Experience the 2 Serenity of Japan's Traditional Countryside Experience the Serenity of Japan's Traditional Countryside Japan's Traditional Countryside Experience the Serenity of Japan's Traditional Countryside Japan's Traditional Countryside Experience the Serenity of Japan's Traditional Countryside Japan's Traditional Countryside Experience the Serenity of Japan's Traditional Countryside Japan's Traditional Countryside Experience the Serenity of Japan's Traditional Countryside",
+  },
+  {
+    title: "Experience 1 the Serenity of Japan's Traditional Countryside",
     image,
     url: "/",
     details:
       "Experience the Serenity of Japan's Traditional Countryside Experience the Serenity of Japan's Traditional Countryside Japan's Traditional Countryside Experience the Serenity of Japan's Traditional Countryside Japan's Traditional Countryside Experience the Serenity of Japan's Traditional Countryside Japan's Traditional Countryside Experience the Serenity of Japan's Traditional Countryside Japan's Traditional Countryside Experience the Serenity of Japan's Traditional Countryside",
   },
   {
-    title: "Experience the Serenity of Japan's Traditional Countryside",
+    title: "Experience the 4 Serenity of Japan's Traditional Countryside",
     image,
     url: "/",
     details:
       "Experience the Serenity of Japan's Traditional Countryside Experience the Serenity of Japan's Traditional Countryside Japan's Traditional Countryside Experience the Serenity of Japan's Traditional Countryside Japan's Traditional Countryside Experience the Serenity of Japan's Traditional Countryside Japan's Traditional Countryside Experience the Serenity of Japan's Traditional Countryside Japan's Traditional Countryside Experience the Serenity of Japan's Traditional Countryside",
   },
   {
-    title: "Experience the Serenity of Japan's Traditional Countryside",
-    image,
-    url: "/",
-    details:
-      "Experience the Serenity of Japan's Traditional Countryside Experience the Serenity of Japan's Traditional Countryside Japan's Traditional Countryside Experience the Serenity of Japan's Traditional Countryside Japan's Traditional Countryside Experience the Serenity of Japan's Traditional Countryside Japan's Traditional Countryside Experience the Serenity of Japan's Traditional Countryside Japan's Traditional Countryside Experience the Serenity of Japan's Traditional Countryside",
-  },
-  {
-    title: "Experience the Serenity of Japan's Traditional Countryside",
+    title: "Experience the 12 Serenity of Japan's Traditional Countryside",
     image,
     url: "/",
     details:
@@ -51,32 +43,26 @@ const newsList = [
   },
 ];
 
-const News = () => {
+const Index = () => {
   const [isFetching, setIsFetching] = useState(false);
   const [newsData, setNewsData] = useState<NewsTypes[] | null>(null);
-  const news = [];
+
   const fetchData = async () => {
     try {
       setIsFetching(true);
       const data: NewsTypes[] = await fetchNews();
       setNewsData(data);
-      setIsFetching(false);
     } catch (error) {
-      console.log(error.message);
+      console.log(error);
+    } finally {
+      setIsFetching(false);
     }
   };
 
-  useEffect(() => {
-    fetchData();
+  // useEffect(() => {
+  //   fetchData();
+  // }, []);
 
-    // cleanup function
-    return () => {
-      fetchData();
-      // cleanup code here
-    };
-  }, []);
-
-  // const { top } = useSafeAreaInsets();
   return (
     <View className="p-4 bg-green-50 flex-1 flex relative ">
       <Stack.Screen
@@ -115,37 +101,33 @@ const News = () => {
         <Ionicons name="chatbox" size={40} color="green" />
       </TouchableOpacity>
 
-      <ScrollView className="flex-1 text-green-600 flex gap-4">
-        <FlatList
-          keyExtractor={(item) => item.title}
-          data={newsList}
-          className="flex gap-10"
-          renderItem={({ item }) => (
-            <View className=" mb-10 bg-white shadow-md flex gap-3 overflow-hidden rounded-2xl">
-              <Image
-                source={item.image}
-                className="rounded-2xl"
-                style={{ width: "auto", height: 200, resizeMode: "cover" }}
-              />
-              <View className="flex gap-2">
-                <Text className="font-bold text-4xl text-green-950 line-clamp-1">
-                  {item.title}
-                </Text>
-                <Text className="text-xl  text-green-900 line-clamp-3">
-                  {item.details}
-                </Text>
-                <TouchableOpacity className="bg-green-800 px-4 py-3 rounded-xl justify-center flex items-center">
-                  <Text className="text-white text-2xl font-bold">
-                    Readmore
-                  </Text>
-                </TouchableOpacity>
-              </View>
+      <FlatList
+        keyExtractor={(item) => item.title}
+        data={newsList}
+        className="flex gap-10"
+        renderItem={({ item }) => (
+          <View className=" mb-10 bg-white shadow-md flex gap-3 overflow-hidden rounded-2xl">
+            <Image
+              source={item.image}
+              className="rounded-2xl"
+              style={{ width: "auto", height: 200, resizeMode: "cover" }}
+            />
+            <View className="flex gap-2">
+              <Text className="font-bold text-4xl text-green-950 line-clamp-1">
+                {item.title}
+              </Text>
+              <Text className="text-xl  text-green-900 line-clamp-3">
+                {item.details}
+              </Text>
+              <TouchableOpacity className="bg-green-800 px-4 py-3 rounded-xl justify-center flex items-center">
+                <Text className="text-white text-2xl font-bold">Readmore</Text>
+              </TouchableOpacity>
             </View>
-          )}
-        />
-      </ScrollView>
+          </View>
+        )}
+      />
     </View>
   );
 };
 
-export default News;
+export default Index;

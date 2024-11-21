@@ -5,8 +5,9 @@
     "orientation": "default",
     "icon": "./src/assets/images/splash.png",
     "splash": {
-      "image": "./src/assets/images/splash.png",
-      "backgroundColor": "#dcfce7"
+      "image": "./src/assets/images/splashs.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#f0fdf4"
     },
     "web": {
       "output": "static",
@@ -26,10 +27,6 @@
     "userInterfaceStyle": "automatic",
     "experiments": {
       "typedRoutes": true
-    },
-    "extra": {
-      "rapidApiKey": "@env.RAPIDAPI_KEY",
-      "rapidApiHost": "@env.RAPIDAPI_HOST"
     }
   }
 }
